@@ -8,7 +8,7 @@ fastify.register(fastifyPostgres, {
 }); 
 
 fastify.get('/', async (request, reply) => {
-  reply.send('Hello, World!');
+  reply.send('Server running');
 });
 
 // CREATE a new character

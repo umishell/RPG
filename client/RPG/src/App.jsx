@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import CharacterForm from './components/CharacterForm.jsx';
+import PowersForm from './components/PowersForm.jsx';
+import { getCharacters, createCharacter } from './api/characters';
+import { getPowers, createPower } from './api/powers';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [characters, setCharacters] = useState([]);
+  const [powers, setPowers] = useState([]);
+
+  useEffect(() => {
+    const fetchCharacters = async () => {
+      try {
+        const fetchedCharacters = await getCharacters();
+        setCharacters(fetchedCharacters);
+      } catch (error) {
+        console.error('Error fetching characters:', error);
+      }
+    };
+
+    const fetchPowers = async () => {
+      try {
+        const fetchedPowers = await getPowers();
+        setPowers(fetchedPowers);
+      } catch (error) {
+        console.error('Error fetching powers:', error);
+      }
+    };
+
+    fetchCharacters();
+    fetchPowers();
+  }, []);
+
+  const handleCharacterSubmit = async (characterData) => {
+    try {
+      const newCharacter = await createCharacter(characterData);
+      setCharacters([...characters, newCharacter]);
+    } catch (error) {
+      console.error('Error creating character:', error);
+    }
+  };
+
+  const handlePowerSubmit = async (powerData) => {
+    try {
+      const newPower = await createPower(powerData);
+      setPowers([...powers, newPower]);
+    } catch (error) {
+      console.error('Error creating power:', error);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>RPG Character App</h1>
+      <CharacterForm onSubmit={handleCharacterSubmit} />
+      <PowersForm onSubmit={handlePowerSubmit} />
+      <ul>
+        {characters.map((character) => (
+          <li key={character.id}>{character.name}</li>
+        ))}
+      </ul>
+      <ul>
+        {powers.map((power) => (
+          <li key={power.id}>{power.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
-export default App
+export default App;
