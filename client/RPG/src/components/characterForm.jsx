@@ -49,4 +49,4 @@ CharacterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default CharacterForm;
+export default CharacterForm; 
