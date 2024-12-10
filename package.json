@@ -1,6 +1,7 @@
 {
   "name": "rpg",
   "version": "1.0.0",
+  "type": "module",
   "description": "fullstack rpg chars and powers creation",
   "main": "index.js",
   "scripts": {
