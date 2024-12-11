@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Character and Power Manager</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div class="container" id="characters-container">
+    <h2>Characters</h2>
+    <form id="character-form">
+      <input type="text" id="char-name" placeholder="Name" required>
+      <input type="text" id="char-class" placeholder="Class" required>
+      <input type="text" id="char-weapon" placeholder="Weapon" required>
+      <button type="button" id="create-char">Create</button>
+      <button type="button" id="update-char">Update</button>
+    </form>
+    <table id="characters-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Weapon</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="container" id="powers-container">
+    <h2>Powers</h2>
+    <form id="power-form">
+      <input type="text" id="power-name" placeholder="Name" required>
+      <input type="text" id="power-type" placeholder="Type" required>
+      <input type="number" id="power-damage" placeholder="Damage" required>
+      <button type="button" id="create-power">Create</button>
+      <button type="button" id="update-power">Update</button>
+    </form>
+    <table id="powers-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Damage</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="./src/js/frontend.js"></script>
+</body>
+</html>
